@@ -1,6 +1,6 @@
 module.exports = (chat, socketEnEsperaChat, socketClientes, socketSalas) => {
   var utilidades = require('../../utilidades/util');
-  var soketSalas = require('./socket.salas');
+//  var soketSalas = require('./socket.salas');
 
   salasChat = [];
   chat.on('msgnew', (msg, sala, socket) => {

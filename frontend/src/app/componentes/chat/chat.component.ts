@@ -33,10 +33,8 @@ export class ChatComponent implements OnInit {
 
    crearSala(userCreator) {
     this.socketAPI.crearSala(this.userCreator);
-
     console.log("llega1");
-
-    this.socketAPI.salasUpdate$.subscribe(s => console.log('Salas', s.salasChat))
+    this.socketAPI.salasUpdate$.subscribe(s => console.log('Salas', s))
     console.log(this.salas);
 
   }

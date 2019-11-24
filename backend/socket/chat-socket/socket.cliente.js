@@ -2,20 +2,20 @@ console.log('Socket-Clientes-chat cargado...');
 exports.funcionInit = () => {
   console.log('socket-clientes inicio');
 }
-usuarios = [];
+usuariosChat = [];
 /////////////////////////////////////////////////////////////////////////
 exports.agregarCliente = (socket, user) => {
-//  console.log(user._id);
-  let _user = usuarios.filter(u => u.id == `${user._id}`)[0];
+  console.log(user._id);
+  let _user = usuariosChat.filter(u => u.id == `${user._id}`)[0];
   if(!_user) {
-    usuarios.push({
+    usuariosChat.push({
       id: user._id,
       socketClient: socket,
       usuario: user
     });
     return true;
   }
-  usuarios = usuarios.map(u => (u.id == user.id) ? {
+  usuariosChat = usuariosChat.map(u => (u.id == user.id) ? {
     id: user.id,
     socketClient: socket,
     usuario: user
@@ -23,14 +23,15 @@ exports.agregarCliente = (socket, user) => {
   return true;
 };
 /////////////////////////////////////////////////////////////////////////
-exports.desconectarCliente = (username) => usuarios = usuarios.filter(u => u.usuario.username != username);
+exports.desconectarCliente = (username) => usuariosChat = usuariosChat.filter(u => u.usuario.username != username);
 /////////////////////////////////////////////////////////////////////////
-exports.getClienteUsername = (username) => usuarios.filter(u => u.usuario.username == username)[0] || null;
+exports.getClienteUsername = (username) => usuariosChat.filter(u => u.usuario.username == username)[0] || null;
 /////////////////////////////////////////////////////////////////////////
-exports.getClienteSocket = (socket) => usuarios.filter((cliente) => cliente.socketId == socket.id)[0] || {};
+exports.getClienteSocket = (socket) => usuariosChat.filter((cliente) => cliente.socketId == socket.id)[0] || {};
 /////////////////////////////////////////////////////////////////////////
-exports.armarClientesPartida = (clientesU) => usuarios.filter(usuario => !!clientesU.includes(usuario.usuario.username));
+exports.armarClientesPartida = (clientesU) => usuariosChat.filter(usuario => !!clientesU.includes(usuario.usuario.username));
 /////////////////////////////////////////////////////////////////////////
-exports.getClientesOnline = () => usuarios.map((user) => user.usuario.username);
+exports.getClientesOnline = () => usuariosChat.map(u => u.usuario.username);
+
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////

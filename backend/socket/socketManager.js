@@ -11,7 +11,7 @@ module.exports = (server) => {
   let mannagerChat = require('./chat-socket/socket.chat');
   let socketEnEsperaChat = require('./chat-socket/socket.enEspera');
   let socketClienteschat = require('./chat-socket/socket.cliente');
-  let socketSalasChat=require('./chat-socket/socket.salas');
+  let socketSalasChat = require('./chat-socket/socket.salas');
   socketSalasJuego.funcionInit();
   socketEnEspera.funcionInit();
   socketEnEsperaChat.funcionInit();
@@ -37,18 +37,22 @@ module.exports = (server) => {
   chat.on('connection', (socket) => {
     console.log('hello chat! ', socket.decoded_token.username);
     if(socket.decoded_token.username) {
+      console.log('entro en if');
       Usuarios.findOne({
         username: socket.decoded_token.username
       }, (err, user) => {
         socketClienteschat.agregarCliente(socket, user);
-        chat.emit('listaUserUpdate', {
+     chat.emit('listaUserUpdate', {
           usuariosOnline: socketClienteschat.getClientesOnline()
         });
+        console.log('MANDO USUSARIOS');
       });
       socket.on('disconnect', () => {
-        socketClienteschat.desconectarCliente(socket.decoded_token.username)
-      });
+       socketClienteschat.desconectarCliente(socket.decoded_token.username)
+    });
+      console.log('Desconectar');
     }
-    mannagerChat(socket, socketEnEsperaChat, socketClienteschat, socketSalasChat)
+    console.log('mananger');
+  //  mannagerChat(socket, socketEnEsperaChat, socketClienteschat, socketSalasChat)
   });
 };
