@@ -18,21 +18,26 @@ export class ChatComponent implements OnInit {
   salas: salaI[] = [];
 
   message: string;
+  nomSala: string;
   messages: string[] = [];
- // salaActual;
-
-  userCreator = JSON.parse(localStorage.getItem('userSess')).username;
-
+  salaActual = localStorage.getItem('salaAct');
+  userCreator;
+  
 
   closeResult: string;
 
    constructor(private modalService: NgbModal, public socketAPI: SocketChatService) {
-     console.log(this.userCreator);
+     console.log();
    }
 
 
-   crearSala(userCreator) {
-    this.socketAPI.crearSala(this.userCreator);
+   crearSala() {
+    if(!localStorage.getItem('userSess'))
+    return;
+
+    this.userCreator = JSON.parse(localStorage.getItem('userSess')).username;
+    console.log(this.nomSala);
+    this.socketAPI.crearSala(this.userCreator, this.nomSala);
     console.log("llega1");
     this.socketAPI.salasUpdate$.subscribe(s => console.log('Salas', s))
     console.log(this.salas);
@@ -45,7 +50,7 @@ export class ChatComponent implements OnInit {
     localStorage.setItem('salaAct', sala.sala);
     this.messages = null;
     this.messages = sala.mensajes;
-
+    this.salaActual = localStorage.getItem('salaAct');
 
   }
 

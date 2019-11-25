@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { sustantivos, pruebas } from "../palabras";
+import { todas, pruebas } from "../palabras";
 
 @Component({
   selector: "app-juego",
@@ -33,7 +33,7 @@ export class JuegoComponent implements OnInit {
 
   title = "MecaTIP";
 
-  palabras = this.ordenarRandom(pruebas);// Ordenar el arreglo de palabras random
+  palabras = this.ordenarRandom(todas);// Ordenar el arreglo de palabras random
 
   stringTodasPalabras = this.palabras.toString();// Arreglo de todas las palabras pasado a String
 

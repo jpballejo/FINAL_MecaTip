@@ -45,6 +45,9 @@ module.exports = (server) => {
      chat.emit('listaUserUpdate', {
           usuariosOnline: socketClienteschat.getClientesOnline()
         });
+        chat.emit('salasUpdate', {
+          salasChat: socketSalasChat.getSalas()
+        });
         console.log('MANDO USUSARIOS');
       });
       socket.on('disconnect', () => {
@@ -53,6 +56,6 @@ module.exports = (server) => {
       console.log('Desconectar');
     }
     console.log('mananger');
-  //  mannagerChat(socket, socketEnEsperaChat, socketClienteschat, socketSalasChat)
+    mannagerChat(socket, socketEnEsperaChat, socketClienteschat, socketSalasChat)
   });
 };

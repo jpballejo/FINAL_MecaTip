@@ -16,7 +16,10 @@ export class SignupComponent implements OnInit {
   }
   registerUser(userForm: NgForm) {
     console.log(userForm.value);
-    this.authService.registrarse(userForm.value).subscribe(res => { this.router.navigateByUrl('/inicio'); })
+    this.authService.registrarse(userForm.value).subscribe(res => { 
+      window.location.href='/inicio';
+      this.router.navigateByUrl('/inicio'); 
+    })
   }
 
 }

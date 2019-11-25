@@ -1,14 +1,18 @@
 module.exports = (chat, socketEnEsperaChat, socketClientes, socketSalas) => {
   var utilidades = require('../../utilidades/util');
-//  var soketSalas = require('./socket.salas');
+  var soketSalas = require('./socket.salas');
 
   salasChat = [];
   chat.on('msgnew', (msg, sala, socket) => {
+
+    
     console.log("entra on msgnew");
     console.log(Object.values(sala)[0]);
     var nSala = Object.values(sala)[0];
     console.log(salasChat);
     let salA = soketSalas.getSalaPorNombre(nSala);
+    if(!salA)
+    return;
     console.log("sala en sistema", salA);
     console.log(msg.msg);
     salA.mensajes.push(msg.msg);
@@ -70,10 +74,12 @@ module.exports = (chat, socketEnEsperaChat, socketClientes, socketSalas) => {
       socketSalas.eliminarSala(idSala);
     }
   });
-  chat.on('crearSala', (userCreador) => {
+  chat.on('crearSala', (userCreador, nomSala) => {
     console.log("llega3");
+    console.log(nomSala.nomSala);
+    
     console.log(userCreador.userCreator);
-    soketSalas.crearSala(userCreador.userCreator);
+    soketSalas.crearSala(userCreador.userCreator, nomSala.nomSala);
   });
   chat.on('SalasTodas', () => {
     chat.emit('allSalas', {

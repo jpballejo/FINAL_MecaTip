@@ -33,8 +33,9 @@ export class SocketChatService {
 
   limpiarSala(idSala) { this.chat.emit('limpiarSala', { idSala: idSala }); }
 
-  crearSala(userCreator) {
-    this.chat.emit('crearSala', { userCreator: userCreator });
+  crearSala(userCreator, nomSala) {
+    this.chat.emit('crearSala', { userCreator: userCreator}, {nomSala: nomSala});
+    console.log(nomSala);
     console.log("llega2");
  }
 
