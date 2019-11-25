@@ -18,8 +18,9 @@ export class ChatComponent implements OnInit {
   salas: salaI[] = [];
 
   message: string;
+  nomSala: string;
   messages: string[] = [];
- // salaActual;
+  salaActual = localStorage.getItem('salaAct');
 
   userCreator = JSON.parse(localStorage.getItem('userSess')).username;
 
@@ -32,7 +33,8 @@ export class ChatComponent implements OnInit {
 
 
    crearSala(userCreator) {
-    this.socketAPI.crearSala(this.userCreator);
+    console.log(this.nomSala);
+    this.socketAPI.crearSala(this.userCreator, this.nomSala);
     console.log("llega1");
     this.socketAPI.salasUpdate$.subscribe(s => console.log('Salas', s))
     console.log(this.salas);
@@ -45,7 +47,7 @@ export class ChatComponent implements OnInit {
     localStorage.setItem('salaAct', sala.sala);
     this.messages = null;
     this.messages = sala.mensajes;
-
+    this.salaActual = localStorage.getItem('salaAct');
 
   }
 

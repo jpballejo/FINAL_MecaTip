@@ -1,4 +1,7 @@
 var salasChat = [];
+var socketClientes = require('./socket.cliente');
+
+
 exports.getSalas = () => {
 
  return salasChat;
@@ -6,9 +9,10 @@ exports.getSalas = () => {
 };
 
 //////////////////////////////////////////////////////
-exports.crearSala = (userCreador) => {
+exports.crearSala = (userCreador, nomSala) => {
   console.log("llega4");
-  var idSala = utilidades.generarID('Chat');
+  //var idSala = utilidades.generarID('Chat');
+  var idSala = (salasChat.length+1).toString()+".- "+nomSala;
   console.log(idSala);
   this.guardarSala(idSala, userCreador);
 
