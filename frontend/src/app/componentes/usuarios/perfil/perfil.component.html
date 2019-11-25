@@ -1,19 +1,49 @@
+<div class="row">
+  <div class="col-md-5 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center">Perfil de Usuario</h1>
+
+
 <div class="perfilUser">
 
   <form [formGroup]="user">
+    <div class="form-group">
     <div class="username">
-      <label for="username"> <input type="text" formControlName="username" placeholder="Username." ></label>
+      <label for="username">Nombre de Usuario:</label>
+      <input class="bg-danger text-white form-control" type="text" formControlName="username" placeholder="Username." >
     </div>
+    </div>
+
+    <div class="form-group">
     <div class="nombre">
-      <label for="nombre"> <input type="text" formControlName="nombre" placeholder="Nombre."></label>
+      <label for="nombre">Nombre:</label>
+      <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre.">
     </div>
+  </div>
+
+    <div class="form-group">
     <div class="apellido">
-      <label for="apellido"> <input type="text" formControlName="apellido" placeholder="Apellido."></label>
+      <label for="apellido">Apellido:</label>
+      <input  class="form-control" type="text" formControlName="apellido" placeholder="Apellido.">
     </div>
+  </div>
+
+  <div class="form-group">
     <div class="email">
-      <label for="email"> <input type="text" formControlName="email" placeholder="Email." > </label>
+      <label for="email">Email: </label>
+      <input class="bg-danger text-white form-control" type="text" formControlName="email" placeholder="Email." >
     </div>
-    <button type="button" name="Modificar" (click)="salvar()">Modificar</button>
+  </div>
+
+
+
+    <button class="btn btn-large btn-block btn-outline-success" type="button" name="Modificar" (click)="salvar()">GUARDAR CAMBIOS</button>
   </form>
 
+</div>
+
+</div>
+</div>
+</div>
 </div>

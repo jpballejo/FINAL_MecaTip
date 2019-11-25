@@ -12,12 +12,15 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+
+
+      <li *ngIf="usuarioLog==null" class="nav-item">
         <a class="nav-link"  routerLink="/auth" >Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"routerLink="/auth/signup" >Registrarse</a>
+        <a  *ngIf="usuarioLog==null" class="nav-link"routerLink="/auth/signup" >Registrarse</a>
       </li>
+
 
       <li class="nav-item">
         <a class="nav-link"  routerLink="/juego" >Jugar</a>
@@ -28,6 +31,10 @@
       <li class="nav-item">
         <a class="nav-link"  routerLink="/palabras" >Palabras Api</a>
       </li>
+      <li class="nav-item">
+          <a *ngIf="usuarioLog!=null"  class="nav-link"  routerLink="/" >Logout</a>
+        </li>
+
 
     </ul>
   </div>

@@ -21,18 +21,21 @@ export class ChatComponent implements OnInit {
   nomSala: string;
   messages: string[] = [];
   salaActual = localStorage.getItem('salaAct');
-
-  userCreator = JSON.parse(localStorage.getItem('userSess')).username;
-
+  userCreator;
+  
 
   closeResult: string;
 
    constructor(private modalService: NgbModal, public socketAPI: SocketChatService) {
-     console.log(this.userCreator);
+     console.log();
    }
 
 
-   crearSala(userCreator) {
+   crearSala() {
+    if(!localStorage.getItem('userSess'))
+    return;
+
+    this.userCreator = JSON.parse(localStorage.getItem('userSess')).username;
     console.log(this.nomSala);
     this.socketAPI.crearSala(this.userCreator, this.nomSala);
     console.log("llega1");
